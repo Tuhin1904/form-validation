@@ -7,14 +7,14 @@ const formSlice = createSlice({
   },
   reducers: {
     submitForm: (state, action) => {
-      const newFormData = action.payload;
+      // const newFormData = action.payload;
 
-      const isDuplicate = state.formData.some(
-        (data) => data.email === newFormData.email || data.mobileNumber === newFormData.mobileNumber
-      );
-      if (!isDuplicate) {
-        state.formData = [newFormData, ...state.formData];
-      }
+      // const isDuplicate = state.formData.some(
+      //   (data) => data.email === newFormData.email || data.mobileNumber === newFormData.mobileNumber
+      // );
+      // if (!isDuplicate) {
+      //   state.formData = [newFormData, ...state.formData];
+      // }
       
       state.formData = [action.payload, ...state.formData];
     },

@@ -3,6 +3,7 @@ import { deleteFormData } from '../../redux/formSlice';
 import { useSelector,useDispatch } from 'react-redux';
 
 const Home = () => {
+  
   const persistedFormData = useSelector((state) => state.form.formData);
   const dispatch=useDispatch();
 
@@ -12,7 +13,10 @@ const Home = () => {
   const handleDelete = (index) => {
     dispatch(deleteFormData(index));
   };
-
+  const handleViewMessage = (message) => {
+    // setViewedMessage(message);
+    alert(`Full Message: ${message}`);
+  };
  
   return (
     <div className='container mx-auto my-5'>
@@ -36,7 +40,20 @@ const Home = () => {
             <td className='border border-gray-300 px-4 py-2'>{data.lastName}</td>
             <td className='border border-gray-300 px-4 py-2'>{data.email}</td>
             <td className='border border-gray-300 px-4 py-2'>{data.mobileNumber}</td>
-            <td className='border border-gray-300 px-4 py-2'>{data.message}</td>
+            <td className='border border-gray-300 px-4 py-2'>
+            {data.message.length > 25 ? (
+          <>
+            {`${data.message.substring(0, 25)}... `}
+            <button
+              className='underline cursor-pointer'
+              onClick={() => handleViewMessage(data.message)}>
+              Read
+            </button>
+          </>
+        ) : (
+          data.message
+        )}  
+            </td>
             <td className='border border-gray-300 px-4 py-2'>{data.address}</td>
             <td className='border border-gray-300 px-4 py-2'>
             <button
